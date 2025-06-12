@@ -1,0 +1,12 @@
+client:
+  build:
+    context: ./wearpact-client
+    target: runner
+  image: wearpact-client:prod
+  restart: unless-stopped
+  environment:
+    NODE_ENV: production
+    NEXT_PUBLIC_CMS_URL: https://cms.example.com
+  ports:
+    - "8080:3100"
+  depends_on: [payload]

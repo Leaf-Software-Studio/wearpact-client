@@ -1,0 +1,13 @@
+client:
+  build: ./wearpact-client
+  command: sh -c "corepack enable && corepack prepare pnpm@9.1.2 --activate && pnpm install && pnpm dev --turbo"
+  volumes:
+    - ./wearpact-client:/home/node/app
+    - /home/node/app/node_modules
+  ports:
+    - "3100:3100"
+  environment:
+    NEXT_PUBLIC_CMS_URL: http://payload:3000
+    PORT: 3100
+  depends_on:
+    - payload # admin service
