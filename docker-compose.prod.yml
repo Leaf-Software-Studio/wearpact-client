@@ -1,12 +1,14 @@
-client:
-  build:
-    context: ./wearpact-client
-    target: runner
-  image: wearpact-client:prod
-  restart: unless-stopped
-  environment:
-    NODE_ENV: production
-    NEXT_PUBLIC_CMS_URL: https://cms.example.com
-  ports:
-    - "8080:3100"
-  depends_on: [payload]
+version: "3.8"
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wearpact-client:prod
+    container_name: wearpact-client
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
